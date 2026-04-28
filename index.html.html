@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emma 360° — Cierre Anual M26</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --emma-blue: #2B2EA8;
+  --emma-blue-dark: #1e2080;
+  --emma-blue-light: #eeeffe;
+  --emma-green: #4ECDA4;
+  --emma-green-dark: #2db888;
+  --emma-green-light: #e8faf4;
+  --emma-red: #E84040;
+  --emma-red-light: #fdeaea;
+  --emma-purple: #8B5CF6;
+  --emma-purple-light: #ede9fe;
+  --emma-yellow: #F59E0B;
+  --emma-yellow-light: #fef3c7;
+  --emma-cyan: #38BDF8;
+  --emma-cyan-light: #e0f6ff;
+  --gray-50: #F8F9FC;
+  --gray-100: #F1F2F8;
+  --gray-200: #E2E4F0;
+  --gray-300: #C8CADC;
+  --gray-400: #9395B0;
+  --gray-600: #4B4E72;
+  --gray-800: #1A1C38;
+  --white: #FFFFFF;
+  --shadow-sm: 0 1px 3px rgba(43,46,168,0.08);
+  --shadow-md: 0 4px 16px rgba(43,46,168,0.10);
+  --shadow-lg: 0 8px 32px rgba(43,46,168,0.14), 0 2px 8px rgba(43,46,168,0.08);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 100px;
+  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--gray-50); color: var(--gray-800); font-family: var(--font); font-size: 15px; line-height: 1.6; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-mark {
+  width: 36px; height: 36px; background: var(--emma-blue);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 18px; font-weight: 800; letter-spacing: -1px;
+}
+.nav-logo-text { font-size: 16px; font-weight: 700; color: var(--emma-blue); }
+
+/* hamburger button */
+.nav-hamburger {
+  width: 40px; height: 40px; border: none; background: transparent;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+  border-radius: var(--radius-sm); transition: background .2s;
+}
+.nav-hamburger:hover { background: var(--gray-100); }
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--emma-blue); border-radius: 2px;
+  transition: all .25s ease;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* drawer */
+.nav-drawer {
+  position: fixed; top: 64px; right: 0; bottom: 0;
+  width: 260px; z-index: 99;
+  background: var(--white); border-left: 1px solid var(--gray-200);
+  box-shadow: -8px 0 32px rgba(43,46,168,0.1);
+  transform: translateX(100%); transition: transform .3s ease;
+  padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.nav-drawer.open { transform: translateX(0); }
+.nav-drawer a {
+  display: block; padding: 12px 16px;
+  color: var(--gray-600); text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  border-radius: var(--radius-sm); transition: all .15s;
+}
+.nav-drawer a:hover { background: var(--emma-blue-light); color: var(--emma-blue); }
+.nav-drawer-overlay {
+  position: fixed; inset: 0; z-index: 98;
+  background: rgba(0,0,0,0.25);
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.nav-drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh; padding-top: 64px;
+  background: var(--emma-blue);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+.hero-dots {
+  position: absolute; inset: 0; opacity: 0.06;
+  background-image: radial-gradient(circle, white 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
+.hero-blob {
+  position: absolute; right: -120px; top: -80px;
+  width: 600px; height: 600px;
+  background: var(--emma-green);
+  border-radius: 50%; opacity: 0.12;
+}
+.hero-blob2 {
+  position: absolute; left: -80px; bottom: -120px;
+  width: 400px; height: 400px;
+  background: var(--emma-green);
+  border-radius: 50%; opacity: 0.08;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1120px; margin: 0 auto; padding: 80px 48px;
+  width: 100%;
+}
+.hero-title {
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 800; line-height: 0.95;
+  letter-spacing: -3px; color: white;
+  margin-bottom: 12px;
+}
+.hero-title .green { color: var(--emma-green); }
+.hero-period {
+  font-size: 14px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+  margin-bottom: 28px;
+}
+.hero-sub {
+  color: rgba(255,255,255,0.72); font-size: 17px;
+  font-weight: 400; max-width: 500px; line-height: 1.7;
+  margin-bottom: 56px;
+}
+.hero-kpi-row {
+  display: flex; gap: 0;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius-lg); overflow: hidden;
+  max-width: 680px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15);
+}
+.hero-kpi {
+  flex: 1; padding: 24px 28px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 100px;
+}
+.hero-kpi:last-child { border-right: none; }
+.hero-kpi-lbl {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+  margin-bottom: 8px; line-height: 1.4;
+}
+.hero-kpi-val { font-size: 30px; font-weight: 800; color: white; line-height: 1; }
+.hero-kpi-val .g { color: var(--emma-green); }
+.hero-kpi-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+
+/* ─── SECTION ─── */
+section { padding: 96px 0; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+.section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--emma-green-dark); margin-bottom: 10px; }
+.section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; color: var(--emma-blue); margin-bottom: 12px; }
+.section-desc { font-size: 15px; color: var(--gray-600); max-width: 540px; line-height: 1.7; margin-bottom: 48px; }
+
+/* ─── CHIPS / BADGES ─── */
+.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: var(--radius-pill); }
+.chip-pos { background: var(--emma-green-light); color: var(--emma-green-dark); }
+.chip-neg { background: var(--emma-red-light); color: var(--emma-red); }
+.chip-neu { background: var(--gray-100); color: var(--gray-600); }
+.chip-blue { background: var(--emma-blue-light); color: var(--emma-blue); }
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+}
+.card-sm { padding: 20px 24px; border-radius: var(--radius-md); }
+
+/* ─── COUNTRY COLORS: CR=Rojo | EC=Amarillo | SV=Azul ─── */
+:root {
+--cr: #E84040;
+--cr-light: #fdeaea;
+--cr-dark: #b91c1c;
+--ec: #F59E0B;
+--ec-light: #fef3c7;
+--ec-dark: #92400e;
+--sv: #2B2EA8;
+--sv-light: #eeeffe;
+--sv-dark: #1e2080;
+}
+
+/* ─── COUNTRY ACCENT ─── */
+.card-cr { border-top: 4px solid var(--cr); }
+.card-ec { border-top: 4px solid var(--ec); }
+.card-sv { border-top: 4px solid var(--sv); }
+.country-label {
+  font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 7px;
+}
+.country-label img { width: 18px; height: 13px; border-radius: 2px; object-fit: cover; flex-shrink: 0; }
+.country-label.cr { color: var(--cr-dark); }
+.country-label.ec { color: var(--ec-dark); }
+.country-label.sv { color: var(--sv); }
+
+/* ─── NUMBERS ─── */
+.big-num { font-size: 36px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: var(--gray-800); }
+.med-num { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; color: var(--gray-800); }
+.sub-text { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+
+/* ─── GRID LAYOUTS ─── */
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+
+/* ─── FOCO DE NEGOCIO ─── */
+.foco-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.foco-cr { border-top: 4px solid var(--cr); }
+.foco-ec { border-top: 4px solid var(--ec); }
+.foco-sv { border-top: 4px solid var(--sv); }
+.foco-header { display: flex; align-items: center; justify-content: space-between; }
+.foco-country { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+.foco-country.cr { color: var(--cr-dark); }
+.foco-country.ec { color: var(--ec-dark); }
+.foco-country.sv { color: var(--sv); }
+.foco-stage {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+  padding: 3px 10px; border-radius: var(--radius-pill);
+}
+.foco-headline {
+  font-size: 20px; font-weight: 800; letter-spacing: -0.5px;
+  color: var(--gray-800); line-height: 1.1;
+}
+.foco-pillars { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.foco-pillar { display: flex; gap: 10px; align-items: flex-start; }
+.foco-pillar-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 5px;
+}
+.foco-pillar-title { font-size: 12px; font-weight: 700; color: var(--gray-800); margin-bottom: 2px; }
+.foco-pillar-desc { font-size: 11px; color: var(--gray-600); line-height: 1.5; }
+.foco-kpis {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  padding-top: 12px; border-top: 1px solid var(--gray-100);
+}
+.foco-kpi-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+  padding: 3px 10px; border-radius: var(--radius-pill);
+  background: var(--gray-100); color: var(--gray-600);
+}
+
+/* ─── CR CONTEXT ─── */
+.cr-context {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid var(--cr);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-lg);
+}
+.cr-context-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.cr-context-flag { font-size: 28px; line-height: 1; }
+.cr-context-title {
+  font-size: 16px; font-weight: 400; color: var(--cr-dark);
+  letter-spacing: -0.3px;
+}
+.cr-context-title strong { font-weight: 800; }
+.cr-context-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+.cr-context-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 20px;
+}
+.cr-context-item {
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.cr-context-num {
+  font-size: 28px; font-weight: 800; color: var(--cr);
+  opacity: 0.25; line-height: 1; flex-shrink: 0; width: 36px;
+}
+.cr-context-item-title {
+  font-size: 13px; font-weight: 700; color: var(--gray-800);
+  margin-bottom: 4px;
+}
+.cr-context-item-desc {
+  font-size: 12px; color: var(--gray-600); line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .cr-context-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── CHART GROUP HEADER ─── */
+.chart-group-header {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 16px;
+}
+.chart-group-title {
+  font-size: 16px; font-weight: 800; color: var(--emma-blue); letter-spacing: -0.3px;
+}
+.chart-group-meta {
+  font-size: 12px; font-weight: 600; color: var(--gray-400); letter-spacing: 0.3px;
+}
+.chart-flag {
+  width: 16px; height: 11px; border-radius: 2px;
+  object-fit: cover; vertical-align: middle; margin-right: 4px;
+}
+
+/* ─── CHART WRAPPER ─── */
+.chart-wrap {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 24px 28px;
+  box-shadow: var(--shadow-lg); margin-bottom: 20px;
+}
+.chart-label { font-size: 12px; font-weight: 700; color: var(--gray-600); letter-spacing: 0.3px; margin-bottom: 16px; }
+canvas { display: block; }
+
+/* ─── REGIONAL TOTAL ─── */
+.regional-block {
+  background: var(--emma-blue);
+  border-radius: var(--radius-lg);
+  padding: 32px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 28px;
+}
+.regional-block-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+.regional-block-val { font-size: 48px; font-weight: 800; letter-spacing: -2px; color: var(--emma-green); line-height: 1; }
+.regional-block-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+
+/* ─── DONUT ─── */
+.donut-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 28px 24px; text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.donut-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 16px; }
+.donut-wrap canvas { position: absolute; top:0; left:0; }
+.donut-center { position: absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.donut-pct { font-size: 22px; font-weight: 800; line-height: 1; color: var(--emma-blue); }
+.donut-sub { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-400); }
+.mix-legend { display: flex; justify-content: center; gap: 14px; font-size: 12px; color: var(--gray-600); }
+.ldot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+
+/* ─── MORA ─── */
+.mora-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+.mora-head { padding: 20px 24px 16px; border-bottom: 1px solid var(--gray-100); }
+.mora-body { padding: 20px 24px; }
+.mora-port { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.1; color: var(--gray-800); }
+.mora-accounts { font-size: 11px; color: var(--gray-400); margin-top: 3px; }
+.mora-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--gray-100); }
+.mora-row:last-child { border-bottom: none; }
+.mora-row-lbl { font-size: 12px; color: var(--gray-600); font-weight: 500; }
+.mora-row-val { font-size: 18px; font-weight: 800; line-height: 1; }
+.val-green { color: #059669; }
+.val-yellow { color: #d97706; }
+.val-red { color: var(--emma-red); }
+.prog-bar { height: 4px; background: var(--gray-100); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 2px; }
+
+/* ─── FEATURES ─── */
+.feat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 40px; align-items: start; }
+.feat-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm); transition: box-shadow .2s, border-color .2s;
+  overflow: hidden; cursor: pointer;
+}
+.feat-card:hover { box-shadow: var(--shadow-md); border-color: var(--emma-green); }
+.feat-card.open { border-color: var(--emma-green); }
+.feat-card-header { display: flex; gap: 12px; align-items: center; padding: 14px 18px; }
+.feat-icon { width: 40px; height: 40px; flex-shrink: 0; }
+.feat-header-text { flex: 1; min-width: 0; }
+.feat-title { font-size: 13px; font-weight: 700; color: var(--gray-800); margin-bottom: 4px; }
+.feat-flags { display: flex; gap: 4px; flex-wrap: wrap; }
+.feat-chevron { width: 18px; height: 18px; flex-shrink: 0; color: var(--gray-300); transition: transform .25s ease; }
+.feat-card.open .feat-chevron { transform: rotate(180deg); }
+.feat-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; padding: 0 18px; }
+.feat-card.open .feat-body { max-height: 200px; padding: 0 18px 14px; }
+.feat-desc { font-size: 12px; color: var(--gray-600); line-height: 1.6; border-top: 1px solid var(--gray-100); padding-top: 10px; }
+.ftag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+.ftag-cr { background: var(--cr-light); color: var(--cr-dark); }
+.ftag-ec { background: var(--ec-light); color: var(--ec-dark); }
+.ftag-sv { background: var(--sv-light); color: var(--sv-dark); }
+.ftag-na { background: var(--gray-100); color: var(--gray-300); }
+
+/* ─── FEATURE ICON ANIMATIONS ─── */
+@keyframes fpulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(.93);}}
+@keyframes fcoin{0%{transform:translateY(-6px);opacity:0;}30%,75%{transform:translateY(0);opacity:1;}100%{transform:translateY(4px);opacity:0;}}
+@keyframes fdraw{0%{stroke-dashoffset:30;}60%,100%{stroke-dashoffset:0;}}
+@keyframes fshield{0%,100%{opacity:1;}50%{opacity:.45;}}
+@keyframes fslide{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+@keyframes fvenna{0%,100%{transform:translateX(0);}50%{transform:translateX(-3px);}}
+@keyframes fvennb{0%,100%{transform:translateX(0);}50%{transform:translateX(3px);}}
+@keyframes fsign{0%{stroke-dashoffset:40;}60%,100%{stroke-dashoffset:0;}}
+@keyframes hray{0%,100%{transform:translateY(0);opacity:0;}15%{opacity:1;}50%{transform:translateY(22px);opacity:1;}85%{opacity:1;}100%{transform:translateY(22px);opacity:0;}}
+@keyframes flupa{0%,100%{transform:translate(0,0);}50%{transform:translate(3px,-3px);}}
+.fi-pulse{animation:fpulse 2s ease-in-out infinite;}
+.fi-coin{animation:fcoin 1.8s ease-in-out infinite;}
+.fi-check{stroke-dasharray:30;stroke-dashoffset:30;animation:fdraw 1.5s ease-in-out infinite;}
+.fi-shield{animation:fshield 2.2s ease-in-out infinite;}
+.fi-doc{animation:fslide 2s ease-in-out infinite;}
+.fi-va{animation:fvenna 2.5s ease-in-out infinite;}
+.fi-vb{animation:fvennb 2.5s ease-in-out infinite;}
+.fi-sign{stroke-dasharray:40;stroke-dashoffset:40;animation:fsign 2s ease-in-out infinite;}
+.fi-hray{animation:hray 2s ease-in-out infinite;}
+.fi-lupa{animation:flupa 2.2s ease-in-out infinite;}
+
+/* ─── ROADMAP ─── */
+.road-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; align-items: start; }
+.road-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  overflow: hidden; cursor: pointer; transition: box-shadow .2s;
+}
+.road-card:hover { box-shadow: var(--shadow-md); }
+.road-card.open { border-color: var(--gray-300); }
+.road-card-header { padding: 14px 16px; display: flex; align-items: flex-start; gap: 10px; }
+.road-status-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.road-title { font-size: 13px; font-weight: 700; color: var(--gray-800); line-height: 1.3; flex: 1; }
+.road-chevron { width: 16px; height: 16px; flex-shrink: 0; color: var(--gray-300); transition: transform .25s; margin-top: 2px; }
+.road-card.open .road-chevron { transform: rotate(180deg); }
+.road-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; padding: 0 16px; }
+.road-card.open .road-body { max-height: 220px; padding: 0 16px 14px; }
+.road-desc { font-size: 12px; color: var(--gray-600); line-height: 1.6; border-top: 1px solid var(--gray-100); padding-top: 10px; margin-bottom: 8px; }
+.status-uat { background: #F59E0B; }
+.status-dev { background: #2B2EA8; }
+.status-delayed { background: #E84040; }
+.status-new { background: #4ECDA4; }
+.road-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.road-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--gray-600); font-weight: 600; }
+.road-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── MATURITY ─── */
+.mat-row {
+  display: flex; background: var(--white);
+  border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+  overflow: hidden; margin-bottom: 12px;
+}
+.mat-stage {
+  flex: 1; padding: 18px 12px; text-align: center;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  color: var(--gray-300); border-right: 1px solid var(--gray-100);
+  position: relative;
+}
+.mat-stage:last-child { border-right: none; }
+.mat-stage.active-cr { background: var(--cr-light); color: var(--cr-dark); }
+.mat-stage.active-ec { background: var(--ec-light); color: var(--ec-dark); }
+.mat-stage.active-sv { background: var(--sv-light); color: var(--sv); }
+.mat-marker { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 14px; }
+
+/* ─── CFI ─── */
+.cfi-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-lg); }
+.cfi-compare { display: flex; align-items: flex-end; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+.cfi-yr { flex: 1; min-width: 100px; }
+.cfi-yr-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 4px; }
+.cfi-yr-val-dim { font-size: 18px; font-weight: 800; color: var(--gray-300); line-height: 1; }
+.cfi-yr-val { font-size: 24px; font-weight: 800; color: var(--emma-blue); line-height: 1; }
+.cfi-arrow { font-size: 16px; color: var(--gray-300); margin-bottom: 4px; flex-shrink: 0; }
+@media (max-width: 480px) {
+  .cfi-compare { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cfi-arrow { display: none; }
+  .cfi-yr { min-width: unset; width: 100%; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ─── PLACEHOLDER ─── */
+.placeholder {
+  background: var(--gray-50);
+  border: 1.5px dashed var(--gray-300);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 90px;
+  color: var(--gray-400); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+
+/* ─── DIVIDER ─── */
+.divider { height: 1px; background: var(--gray-200); margin: 0; }
+
+/* ─── FOOTER ─── */
+#footer {
+  background: var(--emma-blue); padding: 80px 48px;
+  text-align: center;
+}
+.footer-title { font-size: clamp(22px, 4vw, 40px); font-weight: 800; letter-spacing: -1.5px; color: white; line-height: 1.2; max-width: 640px; margin: 0 auto 20px; }
+.footer-desc { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
+.footer-logo { font-size: 36px; font-weight: 800; letter-spacing: -2px; color: var(--emma-green); display: block; margin-bottom: 8px; }
+.footer-period { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+/* ─── FADE ANIMATION ─── */
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .container { padding: 0 20px; }
+  section { padding: 64px 0; }
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .feat-grid, .road-grid { grid-template-columns: 1fr; }
+  .grid-2-1 { grid-template-columns: 1fr; }
+  .hero-inner { padding: 60px 20px; }
+  .hero-kpi-row { flex-direction: column; }
+  .regional-block { flex-direction: column; gap: 12px; text-align: center; }
+  .feat-card[style*="grid-column"] { grid-column: 1 !important; }
+  .cfi-grid, .mix-grid { grid-template-columns: 1fr; }
+  .cr-context-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">m</div>
+    <span class="nav-logo-text">emma 360°</span>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer-overlay" id="overlay"></div>
+<div class="nav-drawer" id="drawer">
+  <a href="#facturacion" class="drawer-link">Facturación</a>
+  <a href="#cfi" class="drawer-link">CFI Neto</a>
+  <a href="#clientes" class="drawer-link">Clientes</a>
+  <a href="#transacciones" class="drawer-link">Transacciones</a>
+  <a href="#lineas" class="drawer-link">Líneas de Crédito</a>
+  <a href="#mora" class="drawer-link">Cartera</a>
+  <a href="#features" class="drawer-link">Features</a>
+  <a href="#roadmap" class="drawer-link">Roadmap Q1-M27</a>
+  <a href="#foco-m27" class="drawer-link">Foco M27</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title">Emma<span class="green">360°</span></h1>
+    <div class="hero-period">Cierre Anual · Año Fiscal M26</div>
+    <p class="hero-sub">Un año de crecimiento regional en Costa Rica, Ecuador y El Salvador. Resultados financieros, avances operativos y las iniciativas que marcan el rumbo hacia M27.</p>
+    <div class="hero-kpi-row">
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Facturación Regional</div>
+        <div class="hero-kpi-val">$70.3<span class="g">M</span></div>
+        <div class="hero-kpi-sub">CR + EC + SV</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Transacciones</div>
+        <div class="hero-kpi-val">244<span class="g">K</span></div>
+        <div class="hero-kpi-sub">Total regional M26</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-lbl">Países Activos</div>
+        <div class="hero-kpi-val">3<span class="g"> 🌎</span></div>
+        <div class="hero-kpi-sub">CR · EC · SV</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FACTURACION -->
+<section id="facturacion">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">01 · Crecimiento Regional</div>
+      <h2 class="section-title">Facturación Regional</h2>
+      <p class="section-desc">La facturación acumulada del M26 supera los $70 millones. Ecuador y El Salvador registran crecimientos de doble dígito, mientras Costa Rica consolida su posición como mercado maduro.</p>
+    </div>
+
+    <!-- Total regional ARRIBA — cambio #2 -->
+    <div class="regional-block fade-up" style="margin-bottom:32px; margin-top:0;">
+      <div>
+        <div class="regional-block-label">Facturación Regional Total M26</div>
+        <div class="regional-block-sub">ABR 2025 – MAR 2026 · Costa Rica + Ecuador + El Salvador</div>
+      </div>
+      <div>
+        <div class="regional-block-val">$70.3M</div>
+        <div style="margin-top:8px;"><span class="chip" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);">vs M25: $73.4M</span></div>
+      </div>
+    </div>
+
+    <div class="grid-3 fade-up" style="margin-bottom:32px;">
+      <div class="card card-cr">
+        <div class="country-label cr">Costa Rica</div>
+        <div class="big-num">$66.99M</div>
+        <div class="sub-text">Ticket prom. anual: <strong>$298</strong></div>
+        <div style="margin-top:10px;"><span class="chip chip-neg">▼ 3.8% vs M25</span></div>
+      </div>
+      <div class="card card-ec">
+        <div class="country-label ec">Ecuador</div>
+        <div class="big-num">$2.98M</div>
+        <div class="sub-text">Ticket prom. anual: <strong>$513</strong></div>
+        <div style="margin-top:10px;"><span class="chip chip-pos">▲ 72.2% vs M25</span></div>
+      </div>
+      <div class="card card-sv">
+        <div class="country-label sv">El Salvador</div>
+        <div class="big-num">$353K</div>
+        <div class="sub-text">Ticket prom. anual: <strong>$468</strong></div>
+        <div style="margin-top:10px;"><span class="chip chip-pos">▲ 46.3% vs M25</span></div>
+      </div>
+    </div>
+
+    <!-- Contexto CR -->
+    <div class="cr-context fade-up">
+      <div class="cr-context-header">
+        <div>
+          <div class="cr-context-title"><strong>Costa Rica</strong>: Menos volumen, más <strong>rentabilidad</strong></div>
+          <div class="cr-context-sub">Factores que explican el -3.8% vs M25</div>
+        </div>
+      </div>
+      <div class="cr-context-grid">
+        <div class="cr-context-item">
+          <div class="cr-context-num">01</div>
+          <div>
+            <div class="cr-context-item-title">Mayor restricción crediticia</div>
+            <div class="cr-context-item-desc">En M26, Emma operó bajo un esquema más restrictivo por ajustes implementados desde agosto 2025 — clientes nuevos, cierres y bloqueos de líneas — reduciendo significativamente la capacidad de colocación frente a M25.</div>
+          </div>
+        </div>
+        <div class="cr-context-item">
+          <div class="cr-context-num">02</div>
+          <div>
+            <div class="cr-context-item-title">Menor flujo de clientes nuevos</div>
+            <div class="cr-context-item-desc">El cierre del canal 100% digital y la apertura limitada únicamente en PDV físico, con parámetros más estrictos, impactó la velocidad de conversión y la ejecución comercial.</div>
+          </div>
+        </div>
+        <div class="cr-context-item">
+          <div class="cr-context-num">03</div>
+          <div>
+            <div class="cr-context-item-title">Reducción del universo elegible</div>
+            <div class="cr-context-item-desc">Las políticas de evaluación de riesgo vigentes limitaron el perfil de clientes aprobables, disminuyendo el número de solicitudes viables y la colocación efectiva en tiendas y comercios.</div>
+          </div>
+        </div>
+        <div class="cr-context-item">
+          <div class="cr-context-num">04</div>
+          <div>
+            <div class="cr-context-item-title">Impacto regulatorio en ticket</div>
+            <div class="cr-context-item-desc">El tope establecido por la Ley de Usura restringió la viabilidad de financiamiento en compras de alto valor, afectando la colocación en categorías estratégicas y reduciendo el potencial de crecimiento.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header unificado para los 3 gráficos — cambio #4 -->
+    <div class="chart-group-header fade-up">
+      <div class="chart-group-title">Facturación por País</div>
+      <div class="chart-group-meta">M26 vs M25 · USD</div>
+    </div>
+
+    <!-- CR ahora como línea/puntos igual que EC y SV — cambios #3 y #4 -->
+    <div class="chart-wrap fade-up">
+      <div class="chart-label">Costa Rica</div>
+      <canvas id="chartCR" height="90"></canvas>
+    </div>
+
+    <div class="chart-wrap fade-up" style="margin-bottom:20px;">
+      <div class="chart-label">Ecuador</div>
+      <canvas id="chartEC" height="90"></canvas>
+    </div>
+
+    <div class="chart-wrap fade-up" style="margin-bottom:24px;">
+      <div class="chart-label">El Salvador</div>
+      <canvas id="chartSV" height="90"></canvas>
+    </div>
+
+    <div class="chart-wrap fade-up">
+      <div class="chart-label">Ticket Promedio mensual por país · USD</div>
+      <canvas id="chartTicket" height="85"></canvas>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CFI -->
+<section id="cfi" style="background:var(--gray-100);">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">02 · Rentabilidad</div>
+      <h2 class="section-title">Ingreso Financiero Neto</h2>
+      <p class="section-desc">Comparativa del CFI neto generado por el canal digital entre M25 y M26 por mercado.</p>
+    </div>
+    <div class="grid-3 fade-up">
+
+      <div class="cfi-card card-cr">
+        <div class="country-label cr">Costa Rica</div>
+        <div class="cfi-compare">
+          <div class="cfi-yr">
+            <div class="cfi-yr-lbl">M25 Neto</div>
+            <div class="cfi-yr-val-dim">$14.64M</div>
+          </div>
+          <div class="cfi-arrow">→</div>
+          <div class="cfi-yr">
+            <div class="cfi-yr-lbl">M26 Neto</div>
+            <div class="cfi-yr-val">$17.06M</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;"><span class="chip chip-pos">▲ +16.5% vs M25</span></div>
+      </div>
+
+      <div class="cfi-card card-ec">
+        <div class="country-label ec">Ecuador</div>
+        <div class="cfi-compare">
+          <div class="cfi-yr">
+            <div class="cfi-yr-lbl">M25 YTD</div>
+            <div class="cfi-yr-val-dim">$892.9K</div>
+          </div>
+          <div class="cfi-arrow">→</div>
+          <div class="cfi-yr">
+            <div class="cfi-yr-lbl">M26 YTD</div>
+            <div class="cfi-yr-val">$1.22M</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;"><span class="chip chip-pos">▲ +37.0% vs M25</span></div>
+      </div>
+
+      <div class="cfi-card card-sv">
+        <div class="country-label sv">El Salvador</div>
+        <div class="cfi-compare">
+          <div class="cfi-yr">
+            <div class="cfi-yr-lbl">M25 YTD</div>
+            <div class="cfi-yr-val-dim">$36.7K</div>
+          </div>
+          <div class="cfi-arrow">→</div>
+          <div class="cfi-yr">
+            <div class="cfi-yr-lbl">M26 YTD</div>
+            <div class="cfi-yr-val">$111K</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;"><span class="chip chip-pos">▲ +202.9% vs M25</span></div>
+        <div style="margin-top:8px; font-size:11px; color:var(--gray-400); font-style:italic;">Primer año fiscal completo · M25 parcial (AGO–MAR)</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLIENTES -->
+<section id="clientes">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">03 · Adopción</div>
+      <h2 class="section-title">Mix de Clientes</h2>
+      <p class="section-desc">Distribución entre clientes nuevos y recurrentes, reflejo directo de la etapa de madurez de Emma en cada mercado.</p>
+    </div>
+
+    <div class="grid-3 fade-up">
+      <div class="donut-card">
+        <div class="country-label cr" style="justify-content:center;">Costa Rica</div>
+        <div class="donut-wrap">
+          <canvas id="donutCR" width="120" height="120"></canvas>
+          <div class="donut-center">
+            <div class="donut-pct" style="color:var(--cr);">86%</div>
+            <div class="donut-sub">Recurrente</div>
+          </div>
+        </div>
+        <div class="mix-legend">
+          <span><span class="ldot" style="background:var(--cr)"></span>86.4% Recurrente</span>
+          <span><span class="ldot" style="background:var(--gray-200)"></span>13.6% Nuevo</span>
+        </div>
+      </div>
+      <div class="donut-card">
+        <div class="country-label ec" style="justify-content:center;">Ecuador</div>
+        <div class="donut-wrap">
+          <canvas id="donutEC" width="120" height="120"></canvas>
+          <div class="donut-center">
+            <div class="donut-pct" style="color:var(--ec);">65%</div>
+            <div class="donut-sub">Nuevo</div>
+          </div>
+        </div>
+        <div class="mix-legend">
+          <span><span class="ldot" style="background:var(--ec)"></span>65% Nuevo</span>
+          <span><span class="ldot" style="background:var(--gray-200)"></span>35% Recurrente</span>
+        </div>
+      </div>
+      <div class="donut-card">
+        <div class="country-label sv" style="justify-content:center;">El Salvador</div>
+        <div class="donut-wrap">
+          <canvas id="donutSV" width="120" height="120"></canvas>
+          <div class="donut-center">
+            <div class="donut-pct" style="color:var(--sv);">64%</div>
+            <div class="donut-sub">Nuevo</div>
+          </div>
+        </div>
+        <div class="mix-legend">
+          <span><span class="ldot" style="background:var(--sv)"></span>63.8% Nuevo</span>
+          <span><span class="ldot" style="background:var(--gray-200)"></span>36.2% Recurrente</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;" class="fade-up">
+      <div class="section-label" style="margin-bottom:14px;">Etapa de madurez por país</div>
+      <div style="background:var(--white); border:1px solid var(--gray-200); border-radius:var(--radius-lg); padding:20px 24px; box-shadow:var(--shadow-sm);">
+        <svg viewBox="0 0 900 340" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow-black" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1e293b"/></marker>
+            <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#4ECDA4"/></marker>
+          </defs>
+          <rect x="48" y="36" width="148" height="210" fill="#dbeafe" rx="6"/>
+          <rect x="200" y="36" width="148" height="210" fill="#e5e7eb" rx="6"/>
+          <rect x="352" y="36" width="148" height="210" fill="#dbeafe" rx="6"/>
+          <rect x="504" y="36" width="148" height="210" fill="#dbeafe" rx="6"/>
+          <rect x="656" y="36" width="200" height="210" fill="#dbeafe" rx="6"/>
+          <text x="122" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Launch</text>
+          <text x="274" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#374151" font-family="'Plus Jakarta Sans',system-ui">Adoption /</text>
+          <text x="274" y="64" text-anchor="middle" font-size="12" font-weight="700" fill="#374151" font-family="'Plus Jakarta Sans',system-ui">Value Generation</text>
+          <text x="426" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Growth</text>
+          <text x="578" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Maturity</text>
+          <text x="756" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Diversification</text>
+          <line x1="48" y1="246" x2="858" y2="246" stroke="#374151" stroke-width="2"/>
+          <polygon points="858,242 868,246 858,250" fill="#374151"/>
+          <line x1="48" y1="246" x2="48" y2="36" stroke="#374151" stroke-width="2"/>
+          <polygon points="44,36 48,26 52,36" fill="#374151"/>
+          <text x="30" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#374151" transform="rotate(-90,30,145)" font-family="'Plus Jakarta Sans',system-ui">Valor</text>
+          <text x="858" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#374151" font-family="'Plus Jakarta Sans',system-ui">Tiempo</text>
+          <path d="M 48,242 C 90,241 130,240 158,236 C 185,230 200,222 220,211 C 245,197 265,187 295,176 C 325,165 355,154 390,143 C 425,132 455,122 490,114 C 525,106 555,102 585,100 C 615,98 640,99 665,100 C 690,101 710,103 730,105" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 730,105 C 755,93 775,80 798,70" fill="none" stroke="#4ECDA4" stroke-width="2.5" stroke-dasharray="6,4" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+          <path d="M 730,105 C 755,118 775,135 798,152" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arrow-black)"/>
+          <circle cx="195" cy="222" r="16" fill="#2B2EA8"/>
+          <text x="195" y="227" text-anchor="middle" font-size="9" font-weight="800" fill="white" font-family="'Plus Jakarta Sans',system-ui" letter-spacing="0.5">SV</text>
+          <circle cx="400" cy="137" r="16" fill="#F59E0B"/>
+          <text x="400" y="142" text-anchor="middle" font-size="9" font-weight="800" fill="white" font-family="'Plus Jakarta Sans',system-ui" letter-spacing="0.5">EC</text>
+          <circle cx="718" cy="105" r="16" fill="#E84040"/>
+          <text x="718" y="110" text-anchor="middle" font-size="9" font-weight="800" fill="white" font-family="'Plus Jakarta Sans',system-ui" letter-spacing="0.5">CR</text>
+          <text x="8" y="295" text-anchor="middle" font-size="9" font-weight="700" fill="#374151" transform="rotate(-90,8,295)" font-family="'Plus Jakarta Sans',system-ui">Target</text>
+          <rect x="52" y="272" width="140" height="48" rx="6" fill="#dbeafe"/>
+          <text x="122" y="289" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Equipos EMMA</text>
+          <text x="122" y="301" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Corporativo/Región/País</text>
+          <text x="122" y="313" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Empleados País</text>
+          <rect x="204" y="278" width="140" height="36" rx="6" fill="#dbeafe"/>
+          <text x="274" y="293" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Fuerza de venta en tiendas</text>
+          <text x="274" y="306" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Friends &amp; Family</text>
+          <rect x="356" y="278" width="296" height="36" rx="6" fill="#dbeafe"/>
+          <text x="504" y="293" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Clientes en tiendas</text>
+          <text x="504" y="306" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Clientes fuera de tiendas</text>
+          <rect x="660" y="278" width="192" height="36" rx="6" fill="#dbeafe"/>
+          <text x="756" y="293" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Clientes en tienda (LC y TC)</text>
+          <text x="756" y="306" text-anchor="middle" font-size="9" fill="#1e3a8a" font-family="'Plus Jakarta Sans',system-ui">Clientes fuera de tiendas (LC)</text>
+        </svg>
+      </div>
+      <p style="font-size:12px; color:var(--gray-400); text-align:center; margin-top:10px;">Cada país opera en una etapa diferente del ciclo — los resultados se interpretan en ese contexto.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TRANSACCIONES -->
+<section id="transacciones" style="background:var(--gray-100);">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">04 · Operación</div>
+      <h2 class="section-title">Transacciones</h2>
+      <p class="section-desc">Volumen transaccional acumulado del año fiscal por mercado.</p>
+    </div>
+
+    <div class="grid-3 fade-up" style="margin-bottom:24px;">
+      <div class="card card-sm card-cr">
+        <div class="country-label cr">Costa Rica</div>
+        <div class="big-num">238,623</div>
+        <div class="sub-text">M25: 255,900</div>
+        <div style="margin-top:8px;"><span class="chip chip-neg">▼ 6.8% vs M25</span></div>
+      </div>
+      <div class="card card-sm card-ec">
+        <div class="country-label ec">Ecuador</div>
+        <div class="big-num">5,323</div>
+        <div class="sub-text">M25: 3,859</div>
+        <div style="margin-top:8px;"><span class="chip chip-pos">▲ 37.9% vs M25</span></div>
+      </div>
+      <div class="card card-sm card-sv">
+        <div class="country-label sv">El Salvador</div>
+        <div class="big-num">787</div>
+        <div class="sub-text">M25: 503</div>
+        <div style="margin-top:8px;"><span class="chip chip-pos">▲ 56.5% vs M25</span></div>
+      </div>
+    </div>
+
+    <div class="regional-block fade-up">
+      <div>
+        <div class="regional-block-label">Total Regional de Transacciones</div>
+        <div class="regional-block-sub">M26 vs M25 · 244,733 vs 260,262</div>
+      </div>
+      <div>
+        <div class="regional-block-val">244,733</div>
+        <div style="margin-top:8px;"><span class="chip chip-neg">▼ 6.0% vs M25</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LÍNEAS DE CRÉDITO -->
+<section id="lineas" style="background:var(--white);">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">04b · Operación</div>
+      <h2 class="section-title">Líneas de Crédito</h2>
+      <p class="section-desc">Líneas de crédito otorgadas durante el año fiscal por mercado.</p>
+    </div>
+
+    <div class="grid-3 fade-up" style="margin-bottom:24px;">
+      <div class="card card-sm card-cr">
+        <div class="country-label cr">Costa Rica</div>
+        <div class="big-num">11,863</div>
+        <div class="sub-text">M25: 43,513</div>
+        <div style="margin-top:8px;"><span class="chip chip-neg">▼ 72.7% vs M25</span></div>
+      </div>
+      <div class="card card-sm card-ec">
+        <div class="country-label ec">Ecuador</div>
+        <div class="big-num">7,018</div>
+        <div class="sub-text">M25: 6,469</div>
+        <div style="margin-top:8px;"><span class="chip chip-pos">▲ 8.5% vs M25</span></div>
+      </div>
+      <div class="card card-sm card-sv">
+        <div class="country-label sv">El Salvador</div>
+        <div class="big-num">607</div>
+        <div class="sub-text">M25: 511</div>
+        <div style="margin-top:8px;"><span class="chip chip-pos">▲ 18.8% vs M25</span></div>
+      </div>
+    </div>
+
+    <div class="chart-group-header fade-up">
+      <div class="chart-group-title">Líneas de Crédito Otorgadas</div>
+      <div class="chart-group-meta">M26 · ABR 25 – MAR 26</div>
+    </div>
+
+    <div class="chart-wrap fade-up">
+      <div class="chart-label">Costa Rica</div>
+      <canvas id="chartLCCR" height="90"></canvas>
+    </div>
+
+    <div class="chart-wrap fade-up" style="margin-bottom:20px;">
+      <div class="chart-label">Ecuador</div>
+      <canvas id="chartLCEC" height="90"></canvas>
+    </div>
+
+    <div class="chart-wrap fade-up" style="margin-bottom:24px;">
+      <div class="chart-label">El Salvador</div>
+      <canvas id="chartLCSV" height="90"></canvas>
+    </div>
+
+    <div class="regional-block fade-up" style="margin-top:24px;">
+      <div>
+        <div class="regional-block-label">Total Regional Líneas Otorgadas M26</div>
+        <div class="regional-block-sub">M26 vs M25 · 19,488 vs 50,493</div>
+      </div>
+      <div>
+        <div class="regional-block-val">19,488</div>
+        <div style="margin-top:8px;"><span class="chip chip-neg">▼ 61.4% vs M25</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MORA -->
+<section id="mora">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">05 · Calidad de Cartera</div>
+      <h2 class="section-title">Comportamiento de Mora</h2>
+      <p class="section-desc">Indicadores de calidad de cartera al cierre de Marzo 2026.</p>
+    </div>
+
+    <div class="grid-3 fade-up">
+      <!-- CR -->
+      <div class="mora-card">
+        <div class="mora-head">
+          <div class="country-label cr">Costa Rica</div>
+          <div class="mora-port">$53.51M</div>
+          <div class="mora-accounts">190,110 cuentas · 132,805 clientes</div>
+        </div>
+        <div class="mora-body">
+          <div class="mora-row">
+            <span class="mora-row-lbl">% Cartera al día</span>
+            <span class="mora-row-val val-green">84.8%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:84.8%;background:#059669;"></div></div>
+          <div class="mora-row" style="margin-top:10px;">
+            <span class="mora-row-lbl">Mora &gt;30 días</span>
+            <span class="mora-row-val val-green">8.00%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:8%;background:#059669;"></div></div>
+          <div class="mora-row" style="margin-top:10px;">
+            <span class="mora-row-lbl">Mora &gt;90 días</span>
+            <span class="mora-row-val val-green">4.25%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:4.25%;background:#059669;"></div></div>
+        </div>
+      </div>
+      <!-- EC -->
+      <div class="mora-card">
+        <div class="mora-head">
+          <div class="country-label ec">Ecuador</div>
+          <div class="mora-port">$3.83M</div>
+          <div class="mora-accounts">6,639 cuentas · 6,381 clientes</div>
+        </div>
+        <div class="mora-body">
+          <div class="mora-row">
+            <span class="mora-row-lbl">% Cartera al día</span>
+            <span class="mora-row-val val-green">82.0%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:82%;background:#059669;"></div></div>
+          <div class="mora-row" style="margin-top:10px;">
+            <span class="mora-row-lbl">Mora &gt;30 días</span>
+            <span class="mora-row-val val-red">16.26%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:16.26%;background:var(--emma-red);"></div></div>
+          <div class="mora-row" style="margin-top:10px;">
+            <span class="mora-row-lbl">Mora &gt;90 días</span>
+            <span class="mora-row-val val-yellow">10.25%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:10.25%;background:#d97706;"></div></div>
+        </div>
+      </div>
+      <!-- SV -->
+      <div class="mora-card">
+        <div class="mora-head">
+          <div class="country-label sv">El Salvador</div>
+          <div class="mora-port">$314.7K</div>
+          <div class="mora-accounts">783 cuentas · 575 clientes</div>
+        </div>
+        <div class="mora-body">
+          <div class="mora-row">
+            <span class="mora-row-lbl">% Cartera al día</span>
+            <span class="mora-row-val val-yellow">68.3%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:68.3%;background:#d97706;"></div></div>
+          <div class="mora-row" style="margin-top:10px;">
+            <span class="mora-row-lbl">Mora &gt;30 días</span>
+            <span class="mora-row-val val-red">18.17%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:18.17%;background:var(--emma-red);"></div></div>
+          <div class="mora-row" style="margin-top:10px;">
+            <span class="mora-row-lbl">Mora &gt;90 días</span>
+            <span class="mora-row-val val-yellow">11.23%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:11.23%;background:#d97706;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section id="features" style="background:var(--gray-100);">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">06 · Producto</div>
+      <h2 class="section-title">Features Lanzados M26</h2>
+      <p class="section-desc">Capacidades entregadas durante el año fiscal, orientadas a experiencia, operación y rentabilidad.</p>
+    </div>
+
+    <div class="feat-grid fade-up">
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="20" r="8" stroke="#2B2EA8" stroke-width="1.5"/>
+            <path d="M13 40 C13 30 35 30 35 40" stroke="#2B2EA8" stroke-width="1.5" stroke-linecap="round"/>
+            <line class="fi-hray" x1="10" y1="12" x2="38" y2="12" stroke="#4ECDA4" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="40" cy="20" r="3" fill="#4ECDA4" opacity=".6"/>
+            <circle cx="40" cy="20" r="1.5" fill="#4ECDA4"/>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">Inicio de sesión con biométricos</div>
+            <div class="feat-flags"><span class="ftag ftag-cr">CR</span><span class="ftag ftag-ec">EC</span><span class="ftag ftag-sv">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Autenticación mediante huella dactilar o reconocimiento facial para acceso seguro y sin fricción.</div></div>
+      </div>
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <rect x="8" y="13" width="26" height="18" rx="4" stroke="#E84040" stroke-width="1.5"/>
+            <line x1="8" y1="20" x2="34" y2="20" stroke="#E84040" stroke-width="1.5"/>
+            <g class="fi-coin"><circle cx="30" cy="28" r="4" fill="#E84040" opacity=".8"/><text x="30" y="31" text-anchor="middle" font-size="6" fill="white" font-weight="600">$</text></g>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">Pagos de cuotas en App</div>
+            <div class="feat-flags"><span class="ftag ftag-cr">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-na">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Permite pagar desde la aplicación las cuotas por medio de tarjeta de Débito/Crédito.</div></div>
+      </div>
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="13" stroke="#F59E0B" stroke-width="1.5"/>
+            <polyline class="fi-check" points="16,24 22,30 32,18" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">OnBoarding Express</div>
+            <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-ec">EC</span><span class="ftag ftag-na">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Validación de identidad para clientes con línea de crédito aprobada en otro canal, reduciendo fricción de ingreso.</div></div>
+      </div>
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <g class="fi-shield"><path d="M24 8L11 14v11c0 7.5 5.5 14 13 16 7.5-2 13-8.5 13-16V14z" stroke="#2B2EA8" stroke-width="1.5" fill="#eeeffe"/><polyline points="17,24 22,29 31,19" stroke="#2B2EA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">Protección de Datos</div>
+            <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-ec">EC</span><span class="ftag ftag-na">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Funcionalidades y consentimientos para cumplimiento regulatorio derivado de la ley de protección de datos.</div></div>
+      </div>
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <g class="fi-doc"><rect x="12" y="8" width="22" height="30" rx="3" stroke="#E84040" stroke-width="1.5" fill="#fdeaea"/><line x1="17" y1="17" x2="29" y2="17" stroke="#E84040" stroke-width="1.5" stroke-linecap="round"/><line x1="17" y1="22" x2="29" y2="22" stroke="#E84040" stroke-width="1.5" stroke-linecap="round"/><line x1="17" y1="27" x2="23" y2="27" stroke="#E84040" stroke-width="1.5" stroke-linecap="round"/></g>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">Gestión de solicitudes en tiendas</div>
+            <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-sv">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Nuevo rol para perfiles de tienda para dar seguimiento a solicitudes y agregar documentos adicionales.</div></div>
+      </div>
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <g class="fi-va"><circle cx="19" cy="24" r="10" stroke="#F59E0B" stroke-width="1.5" fill="#fef3c7" opacity=".9"/></g>
+            <g class="fi-vb"><circle cx="29" cy="24" r="10" stroke="#2B2EA8" stroke-width="1.5" fill="#eeeffe" opacity=".7"/></g>
+            <circle cx="24" cy="24" r="3" fill="#4ECDA4" opacity=".9"/>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">Segmentación de planes comerciales</div>
+            <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-sv">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Segmentación según calificación unificada en Sysde y Mambu para planes promocionales y reglas diferenciadas.</div></div>
+      </div>
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <rect x="8" y="12" width="24" height="30" rx="3" stroke="#E84040" stroke-width="1.5" fill="#fdeaea"/>
+            <path class="fi-sign" d="M12 32 Q17 27 21 32 Q25 37 30 28" stroke="#E84040" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <rect x="28" y="10" width="14" height="4" rx="2" fill="#E84040"/>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">Pagaré por Compra — Fase I</div>
+            <div class="feat-flags"><span class="ftag ftag-cr">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-na">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Optimiza la rentabilidad de créditos originados en tiendas Unicomer (Scan & Pay), habilitando actualización de tasas y estableciendo la factura electrónica como documento garante de cobro.</div></div>
+      </div>
+
+      <div class="feat-card" onclick="this.classList.toggle('open')">
+        <div class="feat-card-header">
+          <svg class="feat-icon" viewBox="0 0 48 48" fill="none">
+            <rect x="8" y="18" width="22" height="22" rx="3" stroke="#F59E0B" stroke-width="1.5" fill="#fef3c7"/>
+            <line x1="8" y1="25" x2="30" y2="25" stroke="#F59E0B" stroke-width="1" stroke-linecap="round"/>
+            <path d="M19 18 L19 13 M13 13 L19 9 L25 13" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <g class="fi-lupa"><circle cx="34" cy="28" r="7" stroke="#2B2EA8" stroke-width="1.5" fill="white"/><circle cx="34" cy="28" r="3" fill="#eeeffe"/><line x1="39" y1="33" x2="44" y2="38" stroke="#2B2EA8" stroke-width="2" stroke-linecap="round"/></g>
+          </svg>
+          <div class="feat-header-text">
+            <div class="feat-title">Identificación de Inventario</div>
+            <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-ec">EC</span><span class="ftag ftag-na">SV</span></div>
+          </div>
+          <svg class="feat-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feat-body"><div class="feat-desc">Permite identificar desde la app si el producto o combo escaneado está disponible para retiro inmediato en tienda o si requiere gestionar una entrega posterior.</div></div>
+      </div>
+
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">07 · Próximamente</div>
+      <h2 class="section-title">Roadmap Q1-M27</h2>
+      <p class="section-desc">Iniciativas priorizadas para el primer trimestre del nuevo año fiscal (ABR–JUN 2026), orientadas a rentabilidad, experiencia y escalabilidad regional.</p>
+    </div>
+
+    <div class="road-legend fade-up">
+      <div class="road-legend-item"><div class="road-legend-dot" style="background:#F59E0B;"></div>En UAT — listo para validación con país</div>
+      <div class="road-legend-item"><div class="road-legend-dot" style="background:#2B2EA8;"></div>En desarrollo</div>
+      <div class="road-legend-item"><div class="road-legend-dot" style="background:#E84040;"></div>Retrasado</div>
+      <div class="road-legend-item"><div class="road-legend-dot" style="background:#4ECDA4;"></div>Nueva iniciativa</div>
+    </div>
+
+    <div class="road-grid fade-up">
+
+      <div class="road-card" onclick="this.classList.toggle('open')">
+        <div class="road-card-header">
+          <div class="road-status-dot status-dev"></div>
+          <div class="road-title">Pagaré por Compra — Fase II</div>
+          <svg class="road-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="road-body">
+          <div class="road-desc">Pagaré digital para créditos en comercios terceros y retiros de efectivo, firmado por el cliente en App.</div>
+          <div class="feat-flags"><span class="ftag ftag-cr">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-na">SV</span></div>
+        </div>
+      </div>
+
+      <div class="road-card" onclick="this.classList.toggle('open')">
+        <div class="road-card-header">
+          <div class="road-status-dot status-uat"></div>
+          <div class="road-title">Límite de Endeudamiento Máximo Dinámico</div>
+          <svg class="road-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="road-body">
+          <div class="road-desc">Cálculo y visualización del límite basado en CMM disponible, tomando en cuenta el mayor plazo (36 meses). Desarrollo finalizado, pendiente UAT con país.</div>
+          <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-sv">SV</span></div>
+        </div>
+      </div>
+
+      <div class="road-card" onclick="this.classList.toggle('open')">
+        <div class="road-card-header">
+          <div class="road-status-dot status-uat"></div>
+          <div class="road-title">Visibilidad de Tasas Nominales</div>
+          <svg class="road-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="road-body">
+          <div class="road-desc">Bitácora de cambios en tasas nominales. Desarrollo y QA completados, pendiente UAT con país.</div>
+          <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-sv">SV</span></div>
+        </div>
+      </div>
+
+      <div class="road-card" onclick="this.classList.toggle('open')">
+        <div class="road-card-header">
+          <div class="road-status-dot status-delayed"></div>
+          <div class="road-title">Módulo de Actualización de Clientes</div>
+          <svg class="road-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="road-body">
+          <div class="road-desc">Mantenimiento del expediente del cliente y trazabilidad. Retrasado — se retoma segunda quincena de mayo.</div>
+          <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-sv">SV</span></div>
+        </div>
+      </div>
+
+      <div class="road-card" onclick="this.classList.toggle('open')">
+        <div class="road-card-header">
+          <div class="road-status-dot status-new"></div>
+          <div class="road-title">Regalos</div>
+          <svg class="road-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="road-body">
+          <div class="road-desc">Permite al usuario seleccionar regalos dentro del proceso de compra al crédito desde el App. Funcionalidad existente en SIAR cuya ausencia en App genera reprocesos operativos y pérdidas de venta.</div>
+          <div class="feat-flags"><span class="ftag ftag-na">CR</span><span class="ftag ftag-ec">EC</span><span class="ftag ftag-na">SV</span></div>
+        </div>
+      </div>
+
+      <div class="road-card" onclick="this.classList.toggle('open')">
+        <div class="road-card-header">
+          <div class="road-status-dot status-new"></div>
+          <div class="road-title">Asistencias en Cash Loan</div>
+          <svg class="road-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="road-body">
+          <div class="road-desc">Integra asistencias Full en el proceso de venta de Cash Loans desde el App, maximizando rentabilidad y habilitando beneficios de protección para los usuarios.</div>
+          <div class="feat-flags"><span class="ftag ftag-cr">CR</span><span class="ftag ftag-na">EC</span><span class="ftag ftag-na">SV</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOCO M27 -->
+
+<!-- FOCO M27 -->
+<section id="foco-m27" style="background:var(--emma-blue);">
+  <div class="container">
+    <div class="fade-up" style="margin-bottom:40px;">
+      <div class="section-label" style="color:var(--emma-green);">08 · Cierre Estratégico</div>
+      <h2 class="section-title" style="color:var(--white);">Foco de Negocio<br><span style="color:var(--emma-green);">M27</span></h2>
+      <p class="section-desc" style="color:rgba(255,255,255,0.65); max-width:600px;">"Una sola visión regional, ejecuciones distintas" — los próximos 12 meses tienen objetivos claros por mercado según su etapa de madurez.</p>
+    </div>
+
+    <div class="grid-3 fade-up">
+
+      <!-- CR -->
+      <div class="foco-card foco-cr" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+        <div class="foco-header">
+          <div class="foco-country cr" style="color:#ff8080;">Costa Rica</div>
+          <div class="foco-stage" style="background:rgba(232,64,64,0.2);color:#ff8080;">Diversification</div>
+        </div>
+        <div class="foco-headline" style="color:var(--white);">Rentabilidad</div>
+        <div class="foco-pillars">
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:var(--cr)"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Crecimiento rentable</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Cliente nuevo + recompra en tiendas propias, terceros y ecommerce (Gollo.com)</div>
+            </div>
+          </div>
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:var(--cr)"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Mejor CFI y cross-selling</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Optimización de ingresos entre casos de uso y segmentación por perfil de cliente</div>
+            </div>
+          </div>
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:var(--cr)"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Producto digital</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Asistencia en Cash, onboarding de comercios y promos niveladas con NAF</div>
+            </div>
+          </div>
+        </div>
+        <div class="foco-kpis" style="border-color:rgba(255,255,255,0.1);">
+          <span class="foco-kpi-tag" style="background:rgba(232,64,64,0.2);color:#ff8080;">ROI campañas</span>
+          <span class="foco-kpi-tag" style="background:rgba(232,64,64,0.2);color:#ff8080;">Cross-selling</span>
+          <span class="foco-kpi-tag" style="background:rgba(232,64,64,0.2);color:#ff8080;">CFI neto</span>
+        </div>
+      </div>
+
+      <!-- EC -->
+      <div class="foco-card foco-ec" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+        <div class="foco-header">
+          <div class="foco-country ec" style="color:#fcd34d;">Ecuador</div>
+          <div class="foco-stage" style="background:rgba(245,158,11,0.2);color:#fcd34d;">Growth</div>
+        </div>
+        <div class="foco-headline" style="color:var(--white);">Recompra y recurrencia</div>
+        <div class="foco-pillars">
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:var(--ec)"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Creación de hábitos</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Días Azules Emma, meses sin intereses selectivos y descuentos en cuotas largas</div>
+            </div>
+          </div>
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:var(--ec)"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Omnicanalidad</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Tienda + App, onboarding y propuesta de valor nueva para igualar al crédito tradicional</div>
+            </div>
+          </div>
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:var(--ec)"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Incentivos a vendedores</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Premios, concursos, metas de tiendas y reconocimiento por activación</div>
+            </div>
+          </div>
+        </div>
+        <div class="foco-kpis" style="border-color:rgba(255,255,255,0.1);">
+          <span class="foco-kpi-tag" style="background:rgba(245,158,11,0.2);color:#fcd34d;">Recompra</span>
+          <span class="foco-kpi-tag" style="background:rgba(245,158,11,0.2);color:#fcd34d;">Cliente nuevo</span>
+          <span class="foco-kpi-tag" style="background:rgba(245,158,11,0.2);color:#fcd34d;">Recurrencia</span>
+        </div>
+      </div>
+
+      <!-- SV -->
+      <div class="foco-card foco-sv" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+        <div class="foco-header">
+          <div class="foco-country sv" style="color:#93c5fd;">El Salvador</div>
+          <div class="foco-stage" style="background:rgba(43,46,168,0.4);color:#93c5fd;">Adoption</div>
+        </div>
+        <div class="foco-headline" style="color:var(--white);">Adopción del producto</div>
+        <div class="foco-pillars">
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:#93c5fd"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Primer uso como KPI clave</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Descargas, líneas aperturadas y primera compra como métricas centrales</div>
+            </div>
+          </div>
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:#93c5fd"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Activación comercial</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Vendedores incentivados, promos fáciles de comunicar y beneficios simples</div>
+            </div>
+          </div>
+          <div class="foco-pillar">
+            <div class="foco-pillar-dot" style="background:#93c5fd"></div>
+            <div>
+              <div class="foco-pillar-title" style="color:rgba(255,255,255,0.9);">Cartera saludable</div>
+              <div class="foco-pillar-desc" style="color:rgba(255,255,255,0.55);">Calidad sobre volumen, cobranza temprana y comunicación clara del proceso de pago</div>
+            </div>
+          </div>
+        </div>
+        <div class="foco-kpis" style="border-color:rgba(255,255,255,0.1);">
+          <span class="foco-kpi-tag" style="background:rgba(43,46,168,0.4);color:#93c5fd;">Activaciones</span>
+          <span class="foco-kpi-tag" style="background:rgba(43,46,168,0.4);color:#93c5fd;">Descargas</span>
+          <span class="foco-kpi-tag" style="background:rgba(43,46,168,0.4);color:#93c5fd;">Líneas aprobadas</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<section id="footer">
+  <div class="footer-title fade-up">El desempeño del M26 confirma que Emma avanza sobre una base sólida de crecimiento regional.</div>
+  <p class="footer-desc fade-up">El foco para M27 estará en ejecutar las nuevas capacidades tecnológicas, escalar su impacto en los tres mercados y continuar fortaleciendo el desempeño considerando las distintas etapas de madurez de cada país.</p>
+  <span class="footer-logo fade-up">emma 360°</span>
+  <div class="footer-period fade-up">Año Fiscal M26 · ABR 2025 – MAR 2026</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const months = ['Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar'];
+const crM26 = [4568676.2,6729176.0,6339319.3,5828598.1,6020246.0,5081286.9,5209731.4,6818028.2,6582424.7,4647148.5,4429980.3,4735887.2];
+const crM25 = [9462173.6,7408033.4,7844657.6,7682270.9,6531680.4,4430996.5,4557318.7,6014895.4,5555702.7,3506922.0,3995042.7,4449077.2];
+const ecM26 = [225706,321772,171376,216040,204519,188101,202818,315740,179054,254220,336366,359441];
+const ecM25 = [111664,103828,125933,259663,316096,73114,23346,106078,121070,102232,162867,221902];
+const svM26 = [16490,21975,19302,22046,17989,23632,23043,54569,32710,32158,40174,49274];
+const svM25 = [0,2735,20064.5,15201,20777.5,27318.8,26715.1,47380,31479,12242.7,15050,22503];
+const crT = [277.45,315.95,304.95,295.62,287.54,287.55,288.66,308.29,294.41,300.2,311.61,304.1];
+const ecT = [557.1,519.36,491.59,540.1,522.81,500.27,498.15,542.68,528.18,470.39,506.11,476.0];
+const svT = [407.01,400.17,463.29,537.72,451.25,463.38,500.94,487.23,436.13,479.97,472.63,518.7];
+
+const blue = '#2B2EA8', green = '#4ECDA4', yellow = '#F59E0B';
+const cr = '#E84040', ec = '#F59E0B', sv = '#2B2EA8';
+const crLight = 'rgba(232,64,64,0.12)', ecLight = 'rgba(245,158,11,0.12)', svLight = 'rgba(43,46,168,0.12)';
+
+const baseOpts = {
+  responsive:true,
+  plugins:{
+    legend:{labels:{color:'#4B4E72',font:{family:"'Plus Jakarta Sans',sans-serif",size:12},boxWidth:10,padding:16}},
+    tooltip:{backgroundColor:'#1A1C38',titleColor:'#fff',bodyColor:'rgba(255,255,255,0.7)',padding:12,cornerRadius:8,titleFont:{family:"'Plus Jakarta Sans',sans-serif",weight:'700'}}
+  },
+  scales:{
+    x:{ticks:{color:'#9395B0',font:{family:"'Plus Jakarta Sans',sans-serif",size:11}},grid:{color:'rgba(0,0,0,0.04)'}},
+    y:{ticks:{color:'#9395B0',font:{family:"'Plus Jakarta Sans',sans-serif",size:11},callback:v=>'$'+(v>=1e6?(v/1e6).toFixed(1)+'M':v>=1000?(v/1000).toFixed(0)+'K':v)},grid:{color:'rgba(0,0,0,0.04)'}}
+  }
+};
+
+new Chart(document.getElementById('chartCR'),{type:'line',data:{labels:months,datasets:[
+  {label:'M26',data:crM26,borderColor:cr,backgroundColor:crLight,tension:0.4,fill:true,pointBackgroundColor:cr,pointRadius:3,pointBorderWidth:0},
+  {label:'M25',data:crM25,borderColor:'rgba(0,0,0,0.18)',backgroundColor:'transparent',tension:0.4,borderDash:[4,4],pointRadius:2}
+]},options:{...baseOpts}});
+
+new Chart(document.getElementById('chartEC'),{type:'line',data:{labels:months,datasets:[
+  {label:'M26',data:ecM26,borderColor:ec,backgroundColor:ecLight,tension:0.4,fill:true,pointBackgroundColor:ec,pointRadius:3,pointBorderWidth:0},
+  {label:'M25',data:ecM25,borderColor:'rgba(0,0,0,0.18)',backgroundColor:'transparent',tension:0.4,borderDash:[4,4],pointRadius:2}
+]},options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,ticks:{...baseOpts.scales.y.ticks,callback:v=>'$'+(v>=1000?(v/1000).toFixed(0)+'K':v)}}}}});
+
+new Chart(document.getElementById('chartSV'),{type:'line',data:{labels:months,datasets:[
+  {label:'M26',data:svM26,borderColor:sv,backgroundColor:svLight,tension:0.4,fill:true,pointBackgroundColor:sv,pointRadius:3,pointBorderWidth:0},
+  {label:'M25',data:svM25,borderColor:'rgba(0,0,0,0.18)',backgroundColor:'transparent',tension:0.4,borderDash:[4,4],pointRadius:2}
+]},options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,ticks:{...baseOpts.scales.y.ticks,callback:v=>'$'+(v>=1000?(v/1000).toFixed(0)+'K':v)}}}}});
+
+new Chart(document.getElementById('chartTicket'),{type:'line',data:{labels:months,datasets:[
+  {label:'Costa Rica',data:crT,borderColor:cr,backgroundColor:'transparent',tension:0.4,pointBackgroundColor:cr,pointRadius:4,pointBorderWidth:0},
+  {label:'Ecuador',data:ecT,borderColor:ec,backgroundColor:'transparent',tension:0.4,pointBackgroundColor:ec,pointRadius:4,pointBorderWidth:0},
+  {label:'El Salvador',data:svT,borderColor:sv,backgroundColor:'transparent',tension:0.4,pointBackgroundColor:sv,pointRadius:4,pointBorderWidth:0}
+]},options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,ticks:{...baseOpts.scales.y.ticks,callback:v=>'$'+v}}}}});
+
+function donut(id,pct,color){
+  new Chart(document.getElementById(id),{type:'doughnut',data:{datasets:[{data:[pct,100-pct],backgroundColor:[color,'#E2E4F0'],borderWidth:0}]},options:{cutout:'72%',plugins:{legend:{display:false},tooltip:{enabled:false}},responsive:false}});
+}
+donut('donutCR',86.4,cr);
+donut('donutEC',65,ec);
+donut('donutSV',63.76,sv);
+
+// CFI charts removed — cards only
+
+const lcMonths = ['Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar'];
+const lcCR = [1160,1221,1333,1039,787,646,1111,1219,1259,708,741,639];
+const lcEC = [639,852,530,534,469,541,478,657,393,461,678,786];
+const lcSV = [48,46,42,29,34,35,31,53,53,70,85,81];
+
+const lcOpts = (color, colorLight) => ({...baseOpts, scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v.toLocaleString()}}}});
+
+new Chart(document.getElementById('chartLCCR'),{type:'line',data:{labels:lcMonths,datasets:[
+  {label:'M26',data:lcCR,borderColor:cr,backgroundColor:crLight,tension:0.4,fill:true,pointBackgroundColor:cr,pointRadius:3,pointBorderWidth:0}
+]},options:lcOpts(cr,crLight)});
+
+new Chart(document.getElementById('chartLCEC'),{type:'line',data:{labels:lcMonths,datasets:[
+  {label:'M26',data:lcEC,borderColor:ec,backgroundColor:ecLight,tension:0.4,fill:true,pointBackgroundColor:ec,pointRadius:3,pointBorderWidth:0}
+]},options:lcOpts(ec,ecLight)});
+
+new Chart(document.getElementById('chartLCSV'),{type:'line',data:{labels:lcMonths,datasets:[
+  {label:'M26',data:lcSV,borderColor:sv,backgroundColor:svLight,tension:0.4,fill:true,pointBackgroundColor:sv,pointRadius:3,pointBorderWidth:0}
+]},options:lcOpts(sv,svLight)});
+
+const io = new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*70);});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
+function toggleMenu(open){
+  hamburger.classList.toggle('open', open);
+  drawer.classList.toggle('open', open);
+  overlay.classList.toggle('open', open);
+}
+hamburger.addEventListener('click', () => toggleMenu(!drawer.classList.contains('open')));
+overlay.addEventListener('click', () => toggleMenu(false));
+document.querySelectorAll('.drawer-link').forEach(a => {
+  a.addEventListener('click', () => toggleMenu(false));
+});
+</script>
+</body>
+</html>
